@@ -1,0 +1,32 @@
+{
+  "template": "https://github.com/radix-ai/poetry-cookiecutter",
+  "commit": "64ab29926a713562adf14d8eba5e6c0df17e6265",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "package_name": "ainewsbot",
+      "package_description": "Api to get daily ai papers",
+      "package_url": "https://github.com/user/my-package",
+      "author_name": "Charles-Antoine Parent",
+      "author_email": "charles-antoine.parent@outlook.com",
+      "python_version": "3.8",
+      "docker_image": "python:$PYTHON_VERSION-slim",
+      "development_environment": "strict",
+      "with_conventional_commits": "1",
+      "with_fastapi_api": "1",
+      "with_jupyter_lab": "0",
+      "with_pydantic_typing": "1",
+      "with_sentry_logging": "0",
+      "with_streamlit_app": "1",
+      "with_typer_cli": "1",
+      "continuous_integration": "GitHub",
+      "docstring_style": "Google",
+      "private_package_repository_name": "",
+      "private_package_repository_url": "",
+      "__package_name_kebab_case": "ainewsbot",
+      "__package_name_snake_case": "ainewsbot",
+      "_template": "https://github.com/radix-ai/poetry-cookiecutter"
+    }
+  },
+  "directory": null
+}

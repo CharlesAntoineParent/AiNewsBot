@@ -1,0 +1,10 @@
+evaluator:
+  class: SimpleEvaluator
+  stars_per_day_weight: 1.0
+
+manager:
+  class: SimpleManager
+  max_day: 7
+
+
+

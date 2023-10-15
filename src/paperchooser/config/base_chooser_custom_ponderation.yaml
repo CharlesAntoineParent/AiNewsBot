@@ -1,0 +1,9 @@
+evaluator:
+  name: SimpleEvaluator
+  
+
+manager:
+  name: SimpleManager
+
+
+

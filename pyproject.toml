@@ -162,24 +162,6 @@ convention = "google"
     options = ["--port"]
     default = "8000"
 
-    [[tool.poe.tasks.api.args]]
-    help = "Enable development mode"
-    type = "boolean"
-    name = "dev"
-    options = ["--dev"]
-
-    [[tool.poe.tasks.app.args]]
-    help = "Bind socket to this host (default: 0.0.0.0)"
-    name = "host"
-    options = ["--host"]
-    default = "0.0.0.0"
-
-    [[tool.poe.tasks.app.args]]
-    help = "Bind socket to this port (default: 8000)"
-    name = "port"
-    options = ["--port"]
-    default = "8000"
-
   [tool.poe.tasks.docs]
   help = "Generate this package's docs"
   cmd = """

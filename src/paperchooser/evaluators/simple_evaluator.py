@@ -3,7 +3,7 @@ from typing import Any, List
 
 import numpy as np
 
-from paperchooser.evaluator.base_evaluator import BaseEvaluator
+from paperchooser.evaluators.base_evaluator import BaseEvaluator
 
 
 class SimpleEvaluator(BaseEvaluator):

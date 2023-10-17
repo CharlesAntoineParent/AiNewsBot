@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 
 import numpy as np
 
-from paperchooser.manager.base_manager import BaseManager
+from paperchooser.managers.base_manager import BaseManager
 
 
 class SimpleManager(BaseManager):

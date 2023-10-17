@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 
 from fastapi import APIRouter
 
-from paperchooser.manager import ManagerFactory
+from paperchooser.managers import ManagerFactory
 
 manager_router = APIRouter(prefix="/selection", tags=["paperchooser"])
 CONFIG_PATH = os.environ.get("CONFIG_PATH", "./src/paperchooser/config/base_chooser.yaml")
@@ -22,7 +22,7 @@ async def rank_papers(papers: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]] : List of valid papers ranked by score.
     """
-    ranked_papers = manager.rank_papers(papers)
+    ranked_papers: List[Dict[str, Any]] = manager.rank_papers(papers)
     return ranked_papers
 
 
@@ -36,7 +36,7 @@ async def validate_papers(papers: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]] : List of valid papers.
     """
-    ranked_papers = manager.get_valid_papers(papers)
+    ranked_papers: List[Dict[str, Any]] = manager.get_valid_papers(papers)
     return ranked_papers
 
 

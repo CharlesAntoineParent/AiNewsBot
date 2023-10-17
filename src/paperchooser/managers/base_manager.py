@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 
 from pydantic import BaseModel
 
-from paperchooser.evaluator.base_evaluator import BaseEvaluator
+from paperchooser.evaluators.base_evaluator import BaseEvaluator
 
 
 class BaseManager(BaseModel, ABC):

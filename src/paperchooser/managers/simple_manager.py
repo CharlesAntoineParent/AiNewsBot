@@ -1,4 +1,5 @@
 """This module contains the SimpleManager class."""
+import datetime
 from typing import Any, Dict, List
 
 import numpy as np
@@ -61,4 +62,7 @@ class SimpleManager(BaseManager):
         Returns:
             bool: True if the paper is valid, False otherwise.
         """
-        return True
+        date = paper["Publication date"]
+        today = datetime.datetime.now().astimezone(datetime.timezone.utc)
+        is_recent: bool = (today - date).days <= self.max_day
+        return is_recent

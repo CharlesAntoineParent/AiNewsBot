@@ -51,6 +51,7 @@ safety = ">=2.3.4,!=2.3.5"
 shellcheck-py = ">=0.9.0"
 typeguard = ">=3.0.2"
 vcrpy = "^5.1.0"
+freezegun = "^1.2.2"
 
 [tool.poetry.group.dev.dependencies]  # https://python-poetry.org/docs/master/managing-dependencies/
 cruft = ">=2.14.0"

@@ -4,9 +4,16 @@ import logging
 
 import coloredlogs
 from fastapi import FastAPI
+from rich.logging import RichHandler
 
 from paperchooser.routers.manager import manager_router
 
+logging.basicConfig(
+    level="WARNING",
+    format="%(message)s",
+    datefmt="[%X]",
+    handlers=[RichHandler(rich_tracebacks=True)],
+)
 app = FastAPI()
 app.include_router(manager_router)
 

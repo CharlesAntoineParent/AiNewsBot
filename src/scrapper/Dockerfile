@@ -20,7 +20,6 @@ COPY ./README.md /app/
 COPY ./poetry.lock* /app/
 COPY ./pyproject.toml /app/
 COPY ./src/scrapper /app/src/scrapper
-RUN touch /app/src/__init__.py
 
 RUN poetry install --only main,scrapper --no-interaction --no-root && rm -rf $POETRY_CACHE_DIR
 

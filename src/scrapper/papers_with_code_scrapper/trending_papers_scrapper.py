@@ -1,5 +1,6 @@
 """This module contains a class for scraping trending papers from paperswithcode.com."""
 import datetime
+import logging
 from functools import wraps
 from typing import Any, Callable, Dict, List
 
@@ -104,17 +105,19 @@ class PapersWithCodeTrendingScrapper(BaseModel):
         Returns:
             Dict[str, Any]: The converted raw paper content.
         """
-        paper_dict: Dict[str, Any] = {}
-        paper_dict["Title"] = PapersWithCodeTrendingScrapper._get_paper_title(raw_paper_content)
-        paper_dict["URL"] = PapersWithCodeTrendingScrapper._get_paper_url(raw_paper_content)
-        paper_dict["Publication date"] = PapersWithCodeTrendingScrapper._get_publication_date(
-            raw_paper_content
-        )
-        paper_dict["Stars"] = PapersWithCodeTrendingScrapper._get_nb_stars(raw_paper_content)
-        paper_dict["Stars per hour"] = PapersWithCodeTrendingScrapper._get_nb_stars_per_minutes(
-            raw_paper_content
-        )
-
+        try:
+            paper_dict: Dict[str, Any] = {}
+            paper_dict["Title"] = PapersWithCodeTrendingScrapper._get_paper_title(raw_paper_content)
+            paper_dict["URL"] = PapersWithCodeTrendingScrapper._get_paper_url(raw_paper_content)
+            paper_dict["Publication date"] = PapersWithCodeTrendingScrapper._get_publication_date(
+                raw_paper_content
+            )
+            paper_dict["Stars"] = PapersWithCodeTrendingScrapper._get_nb_stars(raw_paper_content)
+            paper_dict["Stars per hour"] = PapersWithCodeTrendingScrapper._get_nb_stars_per_minutes(
+                raw_paper_content
+            )
+        except Exception:  # noqa: BLE001
+            logging.warning("Error while parsing paper content")
         return paper_dict
 
     @staticmethod

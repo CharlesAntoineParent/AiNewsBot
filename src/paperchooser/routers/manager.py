@@ -1,6 +1,7 @@
 """Router for the paperchooser manager."""
 
 import os
+from pathlib import Path
 from typing import Any, Dict, List
 
 from fastapi import APIRouter
@@ -8,7 +9,7 @@ from fastapi import APIRouter
 from paperchooser.managers import ManagerFactory
 
 manager_router = APIRouter(prefix="/selection", tags=["paperchooser"])
-CONFIG_PATH = os.environ.get("CONFIG_PATH", "./src/paperchooser/config/base_chooser.yaml")
+CONFIG_PATH = Path(os.environ.get("CONFIG_PATH", "./src/paperchooser/config/base_chooser.yaml"))
 manager = ManagerFactory.create_class_from_config(CONFIG_PATH)
 
 

@@ -1,11 +1,13 @@
 """This module contains the SimpleEvaluator class."""
 import datetime
+import logging
 from typing import Any, List
 
 import numpy as np
 
 from paperchooser.evaluators import BaseEvaluator
 from paperchooser.exceptions import PaperAttributeNotFoundError
+from paperchooser.utils import convert_iso_date
 
 
 class SimpleEvaluator(BaseEvaluator):
@@ -34,7 +36,8 @@ class SimpleEvaluator(BaseEvaluator):
             score: float = 0.0
             score += self.stars_per_hour_weight * float(paper_info["Stars per hour"])
             score += self.stars_weight * float(paper_info["Stars"])
-            score *= self.date_diff_weight ** self._days_since(paper_info["Publication date"])
+            date = convert_iso_date(paper_info["Publication date"])
+            score *= self.date_diff_weight ** self._days_since(date)
         except KeyError as e:
             raise PaperAttributeNotFoundError from e
         return score
@@ -50,7 +53,14 @@ class SimpleEvaluator(BaseEvaluator):
         Returns:
             List[float]: A list of evaluation scores for each paper.
         """
-        return np.array([self.evaluate(paper_info) for paper_info in all_paper_info])
+        batch_out = []
+        for paper_info in all_paper_info:
+            try:
+                batch_out.append(self.evaluate(paper_info))
+            except PaperAttributeNotFoundError:
+                msg = f"Paper {paper_info['Title']} does not have all the required attributes."
+                logging.warning(msg)
+        return np.array(batch_out)
 
     @staticmethod
     def _days_since(date: datetime.datetime) -> float:

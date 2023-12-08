@@ -13,7 +13,7 @@ class ManagerFactory(BaseModel):
     """This class is a factory that create a manager from a config file or a config dictionnary."""
 
     @staticmethod
-    def create_class_from_config(config_path: str) -> managers.BaseManager:
+    def create_class_from_config(config_path: Path) -> managers.BaseManager:
         """Create a manager from a config file.
 
         Args:

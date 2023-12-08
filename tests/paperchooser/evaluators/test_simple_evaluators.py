@@ -22,19 +22,19 @@ class TestSimpleEvaluator:
         return [
             {
                 "Title": "Paper 1",
-                "Publication date": datetime.datetime(2021, 1, 1).astimezone(datetime.timezone.utc),
+                "Publication date": "2021-01-01T00:00:00Z",
                 "Stars": 1,
                 "Stars per hour": 1,
             },
             {
                 "Title": "Paper 2",
-                "Publication date": datetime.datetime(2021, 1, 2).astimezone(datetime.timezone.utc),
+                "Publication date": "2021-01-02T00:00:00Z",
                 "Stars": 2,
                 "Stars per hour": 2,
             },
             {
                 "Title": "Paper 3",
-                "Publication date": datetime.datetime(2021, 1, 3).astimezone(datetime.timezone.utc),
+                "Publication date": "2021-01-03T00:00:00Z",
                 "Stars": 3,
                 "Stars per hour": 3,
             },
@@ -46,18 +46,18 @@ class TestSimpleEvaluator:
         return [
             {
                 "Title": "Paper 1",
-                "Publication date": datetime.datetime(2021, 1, 1).astimezone(datetime.timezone.utc),
+                "Publication date": "2021-01-01T00:00:00Z",
                 "Stars per hour": 1,
             },
             {
                 "Title": "Paper 2",
-                "Publication date": datetime.datetime(2021, 1, 2).astimezone(datetime.timezone.utc),
+                "Publication date": "2021-01-02T00:00:00Z",
                 "Stars": 2,
                 "Stars per hour": 2,
             },
             {
                 "Title": "Paper 3",
-                "Publication date": datetime.datetime(2021, 1, 3).astimezone(datetime.timezone.utc),
+                "Publication date": "2021-01-03T00:00:00Z",
                 "Stars": 3,
                 "Stars per hour": 3,
             },

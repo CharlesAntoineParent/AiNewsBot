@@ -23,18 +23,21 @@ env:
   DOCKER_REGISTRY: ghcr.io
 
 jobs:
-
-  build-images:
+  deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Log in to the Docker registry
+        uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Log in to Azure Container Registry
         uses: azure/docker-login@v2
@@ -42,7 +45,6 @@ jobs:
           registry: ainewsbot.azurecr.io
           username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
           password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
-
       - name: Build Summarizer image
         run: |
           docker build -f ./src/summarizer/Dockerfile -t myregistry.azurecr.io/summarizer:latest .
@@ -74,21 +76,6 @@ jobs:
       - name: Push AiNewsBot image
         run: |
           docker push myregistry.azurecr.io/ainewsbot:latest
-  deploy:
-    runs-on: ubuntu-latest
-
-    if: startsWith(github.ref, 'refs/tags/v')
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Log in to the Docker registry
-        uses: docker/login-action@v2
-        with:
-          registry: ${{ env.DOCKER_REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set Docker image tag
         run: echo "GIT_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV

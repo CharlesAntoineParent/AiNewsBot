@@ -39,19 +39,19 @@ jobs:
 
       - name: Build Summarizer image
         run: |
-          docker build -f ./src/summarizer/Dockerfile -t myregistry.azurecr.io/summarizer:latest
+          docker build -f ./src/summarizer/Dockerfile -t myregistry.azurecr.io/summarizer:latest .
 
       - name: Build Scrapper image
         run: |
-          docker build -f ./src/scrapper/Dockerfile -t myregistry.azurecr.io/scrapper:latest
+          docker build -f ./src/scrapper/Dockerfile -t myregistry.azurecr.io/scrapper:latest .
 
       - name: Build Paperchooser image
         run: |
-          docker build -f ./src/paperchooser/Dockerfile -t myregistry.azurecr.io/paperchooser:latest
+          docker build -f ./src/paperchooser/Dockerfile -t myregistry.azurecr.io/paperchooser:latest .
 
       - name: Build AiNewsBot image
         run: |
-          docker build -f ./src/ainewsbot/Dockerfile -t myregistry.azurecr.io/ainewsbot:latest
+          docker build -f ./src/ainewsbot/Dockerfile -t myregistry.azurecr.io/ainewsbot:latest .
 
       - name: Push Summarizer image
         run: |

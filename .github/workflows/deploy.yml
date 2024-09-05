@@ -44,35 +44,35 @@ jobs:
 
       - name: Build Summarizer image
         run: |
-          docker build -f ./src/summarizer/Dockerfile -t myregistry.azurecr.io/summarizer:latest .
+          docker build -f ./src/summarizer/Dockerfile -t ainewsbot.azurecr.io/summarizer:latest .
 
       - name: Build Scrapper image
         run: |
-          docker build -f ./src/scrapper/Dockerfile -t myregistry.azurecr.io/scrapper:latest .
+          docker build -f ./src/scrapper/Dockerfile -t ainewsbot.azurecr.io/scrapper:latest .
 
       - name: Build Paperchooser image
         run: |
-          docker build -f ./src/paperchooser/Dockerfile -t myregistry.azurecr.io/paperchooser:latest .
+          docker build -f ./src/paperchooser/Dockerfile -t ainewsbot.azurecr.io/paperchooser:latest .
 
       - name: Build AiNewsBot image
         run: |
-          docker build -f ./src/ainewsbot/Dockerfile -t myregistry.azurecr.io/ainewsbot:latest .
+          docker build -f ./src/ainewsbot/Dockerfile -t ainewsbot.azurecr.io/ainewsbot:latest .
 
       - name: Push Summarizer image
         run: |
-          docker push myregistry.azurecr.io/summarizer:latest
+          docker push ainewsbot.azurecr.io/summarizer:latest
 
       - name: Push Scrapper image
         run: |
-          docker push myregistry.azurecr.io/scrapper:latest
+          docker push ainewsbot.azurecr.io/scrapper:latest
 
       - name: Push Paperchooser image
         run: |
-          docker push myregistry.azurecr.io/paperchooser:latest
+          docker push ainewsbot.azurecr.io/paperchooser:latest
 
       - name: Push AiNewsBot image
         run: |
-          docker push myregistry.azurecr.io/ainewsbot:latest
+          docker push ainewsbot.azurecr.io/ainewsbot:latest
 
       - name: Set Docker image tag
         run: echo "GIT_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV

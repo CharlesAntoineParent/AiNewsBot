@@ -70,7 +70,6 @@ jobs:
           docker push myregistry.azurecr.io/ainewsbot:latest
   deploy:
     runs-on: ubuntu-latest
-    uses: actions/checkout@v2
 
     if: startsWith(github.ref, 'refs/tags/v')
 

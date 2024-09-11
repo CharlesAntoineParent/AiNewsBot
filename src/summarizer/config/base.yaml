@@ -1,0 +1,8 @@
+
+model: "GPT 4o mini"
+model-parameters:
+  kv_url: https://ainewsbot-secrets.vault.azure.net/
+  secret_name: openai  
+prompt: MapReduceNormal
+chain: MapReduceChain
+

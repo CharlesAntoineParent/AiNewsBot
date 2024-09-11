@@ -12,7 +12,6 @@ from summarizer.chains import ChainFactory
 app = FastAPI()
 
 CONFIG_PATH = Path("./src/summarizer/config/base.yaml")
-chain = ChainFactory.build_chain_from_yaml(CONFIG_PATH)
 
 
 @app.on_event("startup")
@@ -50,4 +49,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    chain = ChainFactory.build_chain_from_yaml(CONFIG_PATH)
     main()

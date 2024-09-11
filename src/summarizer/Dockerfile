@@ -12,6 +12,11 @@ ARG GID=$UID
 RUN groupadd --gid $GID user && \
     useradd --create-home --gid $GID --uid $UID user --no-log-init && \
     chown user /opt/
+    
+RUN apt-get update && \
+    apt-get install -y sudo curl && \
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
 USER user
 
 # Create and activate a virtual environment.

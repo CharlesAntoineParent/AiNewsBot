@@ -1,24 +1,17 @@
 """ainewsbot REST API."""
 
 import logging
-import os
+from pathlib import Path
 
 import coloredlogs
-import openai
 import uvicorn
-from dotenv import load_dotenv
 from fastapi import FastAPI
 
-from summarizer.chains import MapReduceChain
-from summarizer.models import GPT35Turbo16
-from summarizer.prompts import MapReduceNormal
+from summarizer.chains import ChainFactory
 
 app = FastAPI()
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
-prompt = MapReduceNormal()
-model = GPT35Turbo16()
-chain = MapReduceChain(prompt=prompt, model=model)
+
+CONFIG_PATH = Path("./src/summarizer/config/base.yaml")
 
 
 @app.on_event("startup")
@@ -56,4 +49,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    chain = ChainFactory.build_chain_from_yaml(CONFIG_PATH)
     main()

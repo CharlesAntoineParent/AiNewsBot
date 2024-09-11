@@ -8,18 +8,18 @@ from pydantic import BaseModel
 class BaseLLM(BaseModel, ABC):
     """This class is the abc class for all possible LLM."""
 
-    model_max_token: ClassVar[int]
-    model_name: ClassVar[str]
+    max_token: ClassVar[int]
+    name: ClassVar[str]
 
     @property
     def max_token(self) -> int:
         """Get the max number of token for the model."""
-        return self.model_max_token
+        return self.max_token
 
     @property
     def name(self) -> str:
         """Get the model name."""
-        return self.model_name
+        return self.name
 
     @abstractmethod
     def predict(self, prompt: str) -> str:

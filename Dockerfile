@@ -44,7 +44,12 @@ RUN mkdir -p /home/user/.cache/pypoetry/ && mkdir -p /home/user/.config/pypoetry
 RUN --mount=type=cache,uid=$UID,gid=$GID,target=/home/user/.cache/pypoetry/ \
     poetry install --only main --no-interaction
 
-
+# Add the Microsoft package repository and install the Azure CLI
+# Update package list and install curl and sudo
+USER root
+RUN apt-get update && \
+    apt-get install -y sudo curl && \
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 FROM base as ci
 
@@ -64,7 +69,7 @@ RUN --mount=type=cache,target=/root/.cache/pypoetry/ \
 
 
 
-FROM base as dev
+FROM base as dev 
 
 # Install development tools: curl, git, gpg, ssh, starship, sudo, vim, and zsh.
 USER root

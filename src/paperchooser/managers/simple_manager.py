@@ -1,9 +1,11 @@
 """This module contains the SimpleManager class."""
+import datetime
 from typing import Any, Dict, List
 
 import numpy as np
 
-from paperchooser.manager.base_manager import BaseManager
+from paperchooser.managers.base_manager import BaseManager
+from paperchooser.utils import convert_iso_date
 
 
 class SimpleManager(BaseManager):
@@ -61,4 +63,7 @@ class SimpleManager(BaseManager):
         Returns:
             bool: True if the paper is valid, False otherwise.
         """
-        return True
+        date = convert_iso_date(paper["Publication date"])
+        today = datetime.datetime.now().astimezone(datetime.timezone.utc)
+        is_recent: bool = (today - date).days <= self.max_day
+        return is_recent

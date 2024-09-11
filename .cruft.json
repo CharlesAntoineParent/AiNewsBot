@@ -17,7 +17,7 @@
       "with_jupyter_lab": "0",
       "with_pydantic_typing": "1",
       "with_sentry_logging": "0",
-      "with_streamlit_app": "1",
+      "with_streamlit_app": "0",
       "with_typer_cli": "1",
       "continuous_integration": "GitHub",
       "docstring_style": "Google",

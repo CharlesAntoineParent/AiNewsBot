@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  ainewsbot:
+    build:
+      context: .
+      dockerfile: ./src/ainewsbot/Dockerfile
+    ports:
+      - 8008:8000
+    env_file:
+      - .env
+    depends_on:
+      - summarizer
+      - paperchooser
+      - scrapper
+
+  paperchooser:
+    build:
+      context: .
+      dockerfile: ./src/paperchooser/Dockerfile
+    env_file:
+      - .env
+
+
+  scrapper:
+    build:
+      context: .
+      dockerfile: ./src/scrapper/Dockerfile
+    env_file:
+      - .env
+
+
+  summarizer:
+    build:
+      context: .
+      dockerfile: ./src/summarizer/Dockerfile
+    env_file:
+      - .env

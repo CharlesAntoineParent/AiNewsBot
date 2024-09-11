@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
 name = "ainewsbot"
-version = "0.0.0"
+version = "1.0.0"
 description = "Api to get daily ai papers"
 authors = ["Charles-Antoine Parent <charles-antoine.parent@outlook.com>"]
 readme = "README.md"
@@ -14,7 +14,7 @@ repository = "https://github.com/user/my-package"
 bump_message = "bump(release): v$current_version → v$new_version"
 tag_format = "v$version"
 update_changelog_on_bump = true
-version = "0.0.0"
+version = "1.0.0"
 version_files = ["pyproject.toml:version"]
 
 [tool.poetry.scripts]  # https://python-poetry.org/docs/pyproject/#scripts
@@ -30,9 +30,15 @@ python = ">=3.9,<3.13"
 typer = { extras = ["all"], version = ">=0.9.0" }
 uvicorn = { extras = ["standard"], version = ">=0.20.0" }
 types-pyyaml = "^6.0.12.12"
+openai = "^0.28.1"
+python-dotenv = "^1.0.0"
+pdfminer = "^20191125"
+pdfminer-six = "^20221105"
+rich = "^13.7.0"
+types-beautifulsoup4 = "^4.12.0.7"
 
 [tool.poetry.group.scrapper.dependencies]
-types-requests = "2.30.0.0"
+types-requests = "2.31.0.2"
 bs4 = "^0.0.1"
 requests = "^2.31.0"
 
@@ -51,6 +57,7 @@ safety = ">=2.3.4,!=2.3.5"
 shellcheck-py = ">=0.9.0"
 typeguard = ">=3.0.2"
 vcrpy = "^5.1.0"
+freezegun = "^1.2.2"
 
 [tool.poetry.group.dev.dependencies]  # https://python-poetry.org/docs/master/managing-dependencies/
 cruft = ">=2.14.0"
@@ -59,6 +66,16 @@ pdoc = ">=13.1.1"
 
 [tool.poetry.group.paperchooser.dependencies]
 numpy = "^1.26.0"
+
+
+[tool.poetry.group.summarizer.dependencies]
+langchain = "^0.0.317"
+pypdf = "^3.16.4"
+langchainhub = "^0.1.13"
+tiktoken = "^0.5.1"
+azure-keyvault = "^4.2.0"
+azure-identity = "^1.17.1"
+omegaconf = "^2.3.0"
 
 [tool.black]  # https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html#configuration-via-a-file
 line-length = 100
@@ -157,24 +174,6 @@ convention = "google"
     default = "0.0.0.0"
 
     [[tool.poe.tasks.api.args]]
-    help = "Bind socket to this port (default: 8000)"
-    name = "port"
-    options = ["--port"]
-    default = "8000"
-
-    [[tool.poe.tasks.api.args]]
-    help = "Enable development mode"
-    type = "boolean"
-    name = "dev"
-    options = ["--dev"]
-
-    [[tool.poe.tasks.app.args]]
-    help = "Bind socket to this host (default: 0.0.0.0)"
-    name = "host"
-    options = ["--host"]
-    default = "0.0.0.0"
-
-    [[tool.poe.tasks.app.args]]
     help = "Bind socket to this port (default: 8000)"
     name = "port"
     options = ["--port"]

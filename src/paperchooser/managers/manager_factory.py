@@ -1,5 +1,4 @@
 """This module contains the manager factory class."""
-from ast import literal_eval
 from pathlib import Path
 from typing import Any, Dict
 
@@ -7,15 +6,14 @@ import yaml
 from pydantic import BaseModel
 from pydantic_core import ValidationError
 
-from paperchooser.evaluator import *  # noqa: F403
-from paperchooser.manager.base_manager import BaseManager
+from paperchooser import evaluators, managers
 
 
 class ManagerFactory(BaseModel):
     """This class is a factory that create a manager from a config file or a config dictionnary."""
 
     @staticmethod
-    def create_class_from_config(config_path: str) -> BaseManager:
+    def create_class_from_config(config_path: Path) -> managers.BaseManager:
         """Create a manager from a config file.
 
         Args:
@@ -29,7 +27,7 @@ class ManagerFactory(BaseModel):
         return ManagerFactory.create_class(config)
 
     @staticmethod
-    def create_class(config: Dict[str, Any]) -> BaseManager:
+    def create_class(config: Dict[str, Any]) -> managers.BaseManager:
         """This function create a manager from a config dictionnary.
 
         Args:
@@ -43,7 +41,7 @@ class ManagerFactory(BaseModel):
         return manager
 
     @staticmethod
-    def _get_evaluator(evaluator_config: Dict[str, Any]) -> BaseEvaluator:  # noqa: F405
+    def _get_evaluator(evaluator_config: Dict[str, Any]) -> evaluators.BaseEvaluator:
         """This function instantiate the evaluator if found.
 
         Args:
@@ -52,33 +50,35 @@ class ManagerFactory(BaseModel):
         Returns:
             BaseEvaluator: The instantiate evaluator based on config
         """
-        class_name = evaluator_config.pop("class_name")
+        class_name = evaluator_config.pop("class")
         try:
-            evaluator_class = literal_eval(class_name)
-            evaluator: BaseEvaluator = evaluator_class(**evaluator_config)  # noqa: F405
+            evaluator_class = getattr(evaluators, class_name)
+            evaluator_instance: evaluators.BaseEvaluator = evaluator_class(**evaluator_config)
         except (NameError, ValidationError) as e:
             msg = f"Class {class_name} not found or invalid config."
             raise ValueError(msg) from e
         else:
-            return evaluator
+            return evaluator_instance
 
     @staticmethod
     def _get_manager(
-        evaluator: BaseEvaluator, manager_config: Dict[str, Any]  # noqa: F405
-    ) -> BaseManager:
+        evaluator_instance: evaluators.BaseEvaluator, manager_config: Dict[str, Any]
+    ) -> managers.BaseManager:
         """This function instantiate the manager if found.
 
         Args:
-            evaluator (BaseEvaluator): Evalutor to use.
+            evaluator_instance (BaseEvaluator): Evalutor to use.
             manager_config (Dict[str, Any]): Config dictionnary of the manager.
 
         Returns:
             BaseManager: The instantiate manager based on config
         """
-        class_name = manager_config.pop("class_name")
+        class_name = manager_config.pop("class")
         try:
-            manager_class = literal_eval(class_name)
-            manager: BaseManager = manager_class(evaluator=evaluator, **manager_config)
+            manager_class = getattr(managers, class_name)
+            manager: managers.BaseManager = manager_class(
+                evaluator=evaluator_instance, **manager_config
+            )
         except (NameError, ValidationError) as e:
             msg = f"Class {class_name} not found or invalid config."
             raise ValueError(msg) from e

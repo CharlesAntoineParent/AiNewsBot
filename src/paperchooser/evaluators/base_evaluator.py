@@ -11,7 +11,7 @@ class BaseEvaluator(ABC, BaseModel):
     """Base class for all evaluators."""
 
     @abstractmethod
-    def evaluate(self, paper_info: dict[Any, str]) -> float:
+    def evaluate(self, paper_info: dict[str, Any]) -> float:
         """Evaluate the model.
 
         Args:
@@ -23,7 +23,7 @@ class BaseEvaluator(ABC, BaseModel):
 
     @abstractmethod
     def evaluate_batch(
-        self, all_paper_info: List[dict[Any, str]]
+        self, all_paper_info: List[dict[str, Any]]
     ) -> np.ndarray[Any, np.dtype[np.float64]]:
         """Evaluate the model on a batch of data.
 

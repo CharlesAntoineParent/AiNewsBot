@@ -104,7 +104,7 @@ class GPT35Turbo4(GPTModel):
     """This model is gpt 3.5 turbo with 4k context."""
 
     max_token: ClassVar[int] = 4000
-    model_name: ClassVar[str] = "GPT 3.5 turbo 4k context"
+    name: ClassVar[str] = "GPT 3.5 turbo 4k context"
     model_api_name: ClassVar[str] = "gpt-3.5-turbo"
 
 
@@ -112,7 +112,7 @@ class GPT35Turbo16(GPTModel):
     """This model is gpt 3.5 turbo with 16k context."""
 
     max_token: ClassVar[int] = 16000
-    model_name: ClassVar[str] = "GPT 3.5 turbo 16k context"
+    name: ClassVar[str] = "GPT 3.5 turbo 16k context"
     model_api_name: ClassVar[str] = "gpt-3.5-turbo-16k"
 
 
@@ -120,7 +120,7 @@ class GPT4Turbo8(GPTModel):
     """This model is gpt 4 turbo with 8k context."""
 
     max_token: ClassVar[int] = 8000
-    model_name: ClassVar[str] = "GPT 4 turbo 16k context"
+    name: ClassVar[str] = "GPT 4 turbo 16k context"
     model_api_name: ClassVar[str] = "gpt-4"
 
 
@@ -128,7 +128,7 @@ class GPT4Turbo32(GPTModel):
     """This model is gpt 4 turbo with 32k context."""
 
     max_token: ClassVar[int] = 32000
-    model_name: ClassVar[str] = "GPT 4 turbo 16k context"
+    name: ClassVar[str] = "GPT 4 turbo 16k context"
     model_api_name: ClassVar[str] = "gpt-4-32k"
 
 
@@ -136,7 +136,7 @@ class GPT4Turbo128(GPTModel):
     """This model is gpt 4 turbo with 128k context."""
 
     max_token: ClassVar[int] = 128000
-    model_name: ClassVar[str] = "GPT 4 turbo 128k context"
+    name: ClassVar[str] = "GPT 4 turbo 128k context"
     model_api_name: ClassVar[str] = "gpt-4-1106-preview"
 
 
@@ -144,7 +144,7 @@ class GPT4oMini(GPTModel):
     """This model is gpt 4o mini with 128k context."""
 
     max_token: ClassVar[int] = 128000
-    model_name: ClassVar[str] = "GPT 4o mini"
+    name: ClassVar[str] = "GPT 4o mini"
     model_api_name: ClassVar[str] = "gpt-4o-mini"
 
 

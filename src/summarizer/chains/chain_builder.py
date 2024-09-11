@@ -17,7 +17,7 @@ class ChainFactory:
     """Factory class for creating chains."""
 
     _chain_registry: ClassVar[dict[str, BaseChain]] = {MapReduceChain.__name__: MapReduceChain}
-    _model_registry: ClassVar[dict[str, GPTModel]] = {GPT4oMini.model_name: GPT4oMini}
+    _model_registry: ClassVar[dict[str, GPTModel]] = {GPT4oMini.name: GPT4oMini}
     _prompt_registry: ClassVar[dict[str, MapReduceBase]] = {
         MapReduceBase.__name__: MapReduceBase,
         MapReduceChild.__name__: MapReduceChild,

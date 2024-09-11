@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]  # https://python-poetry.org/docs/pyproject/
 name = "ainewsbot"
-version = "0.0.0"
+version = "1.0.0"
 description = "Api to get daily ai papers"
 authors = ["Charles-Antoine Parent <charles-antoine.parent@outlook.com>"]
 readme = "README.md"
@@ -14,7 +14,7 @@ repository = "https://github.com/user/my-package"
 bump_message = "bump(release): v$current_version → v$new_version"
 tag_format = "v$version"
 update_changelog_on_bump = true
-version = "0.0.0"
+version = "1.0.0"
 version_files = ["pyproject.toml:version"]
 
 [tool.poetry.scripts]  # https://python-poetry.org/docs/pyproject/#scripts
